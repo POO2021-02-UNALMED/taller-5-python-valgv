@@ -5,14 +5,15 @@ class Pez(Animal):
     salmones = 0
     bacalaos = 0
 
-    def __init__(self, nombre, edad, habitat, zona, genero, colorEscamas, cantidadAletas):
+    def __init__(self, nombre, edad, habitat, genero, colorEscamas, cantidadAletas):
+        Animal._totalAnimales += 1
         self._nombre = nombre
         self._edad = edad
         self._habitat = habitat
-        self._zona = zona
         self._genero = genero
         self._colorEscamas = colorEscamas
         self._cantidadAletas = cantidadAletas
+        Pez._listado.append(self)
     
     @classmethod
     def cantidadPeces(cls):
@@ -21,56 +22,32 @@ class Pez(Animal):
     def movimiento(self):
         return "nadar"
     
-    #def crearSalmon(cls, nombre, edad, genero):
-    
-    #def crearBacalao(cls, nombre, edad, genero):
-
-    def getNombre(self):
-        return _nombre
-    
-    def setNombre(self, nombre):
-        self._nombre = nombre
-
-    def getEdad(self):
-        return _edad
-    
-    def setEdad(self, edad):
-        self._edad =  edad
-
-    def getHabitat(self):
-        return _habitat
-    
-    def setHabitat(self, habitat):
-        self._habitat = habitat 
-
-    def getGenero(self):
-        return _genero
-    
-    def setGenero(self, genero):
-        self._genero = genero
-    
-    def getZona(self):
-        return _zona
-    
-    def setZona(self, zona):
-        self._zona = zona    
+    @classmethod
+    def crearSalmon(cls, nombre, edad, genero):
+        cls.salmones += 1
+        return Pez(nombre, edad, 'oceano', genero, 'rojo', 6)
     
     @classmethod
-    def getListado(cls):
+    def crearBacalao(cls, nombre, edad, genero):
+        cls.bacalaos += 1
+        return Pez(nombre, edad, 'oceano', genero, 'gris', 6)   
+    
+    @classmethod
+    def getPez(cls):
         return cls._listado
     
     @classmethod
-    def setListado(cls, listado):
+    def setPez(cls, listado):
         cls._listado = listado
     
     def getColorEscamas(self):
-        return _colorEscamas
+        return self._colorEscamas
     
     def setColorEscamas(self, col):
         self._colorEscamas = col
 
     def getCantidadAletas(self):
-        return _cantidadAletas
+        return self._cantidadAletas
     
     def setCantidadAletas(self, aletas):
         self._cantidadAletas = aletas

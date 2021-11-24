@@ -5,14 +5,15 @@ class Reptil(Animal):
     iguanas = 0
     serpientes = 0
 
-    def __init__(self, nombre, edad, habitat, zona, genero, colorEscamas, largoCola):
+    def __init__(self, nombre, edad, habitat, genero, colorEscamas, largoCola):
+        Animal._totalAnimales += 1
         self._nombre = nombre
         self._edad = edad
         self._habitat = habitat
-        self._zona = zona
         self._genero = genero
         self._colorEscamas = colorEscamas
         self._largoCola = largoCola
+        Reptil._listado.append(self)
     
     @classmethod
     def cantidadReptiles(cls):
@@ -21,56 +22,32 @@ class Reptil(Animal):
     def movimiento(self):
         return "reptar"
     
-    #def crearIguana(cls, nombre, edad, genero):
-    
-    #def crearSerpiente(cls, nombre, edad, genero):
-
-    def getNombre(self):
-        return _nombre
-    
-    def setNombre(self, nombre):
-        self._nombre = nombre
-
-    def getEdad(self):
-        return _edad
-    
-    def setEdad(self, edad):
-        self._edad =  edad
-
-    def getHabitat(self):
-        return _habitat
-    
-    def setHabitat(self, habitat):
-        self._habitat = habitat 
-
-    def getGenero(self):
-        return _genero
-    
-    def setGenero(self, genero):
-        self._genero = genero
-    
-    def getZona(self):
-        return _zona
-    
-    def setZona(self, zona):
-        self._zona = zona 
+    @classmethod
+    def crearIguana(cls, nombre, edad, genero):
+        cls.iguanas += 1
+        return Reptil(nombre, edad, 'humedal', genero, 'verdes', genero)
     
     @classmethod
-    def getListado(cls):
+    def crearSerpiente(cls, nombre, edad, genero):
+        cls.serpientes += 1
+        return Reptil(nombre, edad, 'jungla', genero, 'blanco', 1)
+    
+    @classmethod
+    def getReptil(cls):
         return cls._listado
     
     @classmethod
-    def setListado(cls, listado):
+    def setReptil(cls, listado):
         cls._listado = listado
     
     def getColorEscamas(self):
-        return _colorEscamas
+        return self._colorEscamas
     
     def setColorEscamas(self, color):
         self._colorEscamas = color
 
     def getLargoCola(self):
-        return _largoCola
+        return self._largoCola
     
     def setLargoCola(self, largo):
         self._largoCola = largo
